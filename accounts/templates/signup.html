@@ -1,31 +1,63 @@
-<h1>Sign Up!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="sign_up">
+            <h1>Sign Up!</h1>
 
-<form method="POST" action="{% url 'signup'%}">
+            <form method="POST" action="{% url 'signup'%}">
+            
+            {% csrf_token %}
+            Username:
+            <br>
+            <input name="username"  type="text" value="">
+            <br>
+            Password:
+            <br>
+            <input name="password1"  type="password" value="">
+            <br>
+            Confirm Password:
+            <br>
+            <input name="password2"  type="password" value="">
+            <br>
+            Hakbun:
+            <br>
+            <input type="text" name="hak" required=True value="">
+            <br>
+            
+            <br>
+            <input type="text" name="hak" required=True value="">
+            <br>
+            
+            
+            <br>
+            <br>
+            <input class="btn btn-primary" type="submit" value="Sign Up!">
+            </form>
 
-{% csrf_token %}
-Username:
-<br>
-<input name="username"  type="text" value="">
-<br>
-Password:
-<br>
-<input name="password1"  type="password" value="">
-<br>
-Confirm Password:
-<br>
-<input name="password2"  type="password" value="">
-<br>
-Hakbun:
-<br>
-<input type="text" name="hak" required=True value="">
-<br>
 
-<br>
-<input type="text" name="hak" required=True value="">
-<br>
+    </div>
+        
+</body>
+</html>
 
 
-<br>
-<br>
-<input class="btn btn-primary" type="submit" value="Sign Up!">
-</form>
+
+
+<style>
+
+.sign_up{
+    background-color: white;
+
+}
+body{
+    background-color: cadetblue;
+
+}
+
+</style>

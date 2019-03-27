@@ -7,7 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <!-- 합쳐지고 최소화된 최신 CSS -->
+ <!-- Compiled and minified CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+ <!-- Compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+         
   <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="{% static 'mat.css'%}">
@@ -19,10 +24,12 @@
     
     <nav class="asdf">
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo">Swing it</a>
-          <ul id="nav" class="right hide-on-med-and-down">
+          <a href="#" class="left brand-logo">Swing it</a>
+          <ul id="nav" class="right">
+
               {% if user.is_authenticated %}
-              <li><a href="{%url 'logout' %}">Logout</a></li>
+              <li><a href="{%url 'logout'%}">Logout</a></li>
+
 
               
               {%else%}
@@ -32,15 +39,32 @@
             <li><a href="#">Board</a></li>
           </ul>
         </div>
+       
       </nav>
-            
 
-        <article>
-          <p class="center_text">Hongik<br/>Swing it</p>
+      
+      <ul class="sidenav" id="mobile-demo">
+          {% if user.is_authenticated %}
+          <li><a href="{%url 'logout'%}">Logout</a></li>
+          <form id="logout" method="POST" action="">
+                {% csrf_token %} <input type="hidden" />
+            </form></li>
+
+          
+          {%else%}
+          <li><a href="{%url 'signup'%}">Sign up</a></li>
+          <li><a href="{%url 'login'%}">Sign in</a></li>
+        {%endif%}
+      </ul>
+      
+      
+
+        <article >
+          <p class="center_text" >Hongik<br/>Swing it</p>
         </article>
           
         <!--  Video is muted & autoplays, placed after major DOM elements for performance & has an image fallback  -->
-        <video autoplay loop id="video-background"  plays-inline>
+        <video autoplay loop id="video-background" muted plays-inline>
           <source src="{% static 'intro.mp4'%}" type="video/mp4">
         </video>
 
@@ -57,14 +81,38 @@ made by Taewan </br>
 
 
 </html>
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems, options);
+    var instance = M.Dropdown.getInstance(elem);
+
+  });
+  $('.dropdown-trigger').dropdown();
+
+
+  instance.open();
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+  
+</script>
 
 <style>
+.asdf .brand-logo {
+  color: cadetblue;
+}
+nav ul a{
+  color : cadetblue !important;
+}
 body{
   height: 100%;
 }
 
 .asdf{
-  background-color: black !important; 
+  background-color: rgba(255, 255, 255, 0.5) !important; 
+  color: black;
 }
 #container {
    min-height:100%;
@@ -149,8 +197,14 @@ body{
   }
 
 
-  p .center_text{
-    
+.center_text{
+  color: white;
+    text-align: center;
+    height: 100%;
+   
+    padding-top: 30vh;
+    font-size: 3rem;
+
   }
 
 
