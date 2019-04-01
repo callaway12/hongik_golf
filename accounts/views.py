@@ -9,8 +9,7 @@ def signup(request):
         if request.POST['password1'] == request.POST['password2']:
             user = User.objects.create_user(
                 request.POST['username'], password=request.POST['password1'])
-            profile = User.objects.profile(hak=request.POST['hak'], jungong=request['jungong'], phone=request['phone'],gisu=request['gisu'])
-            profile.save()
+           
             auth.login(request, user)
             return redirect('home')
     return render(request, 'signup.html')
