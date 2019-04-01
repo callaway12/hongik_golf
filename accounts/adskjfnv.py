@@ -4,7 +4,6 @@ from django.contrib.auth.models import (
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth.models import User
 
 
 class UserManager(BaseUserManager):
@@ -58,16 +57,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(
         verbose_name=_('Date joined'),
         default=timezone.now
-    )
-    last_name = models.CharField(
-        null = True,
-        max_length=30,
-
-    )
-    first_name = models.CharField(
-        null = True,
-        max_length=30,
-
     )
     # 이 필드는 레거시 시스템 호환을 위해 추가할 수도 있다.
     salt = models.CharField(
